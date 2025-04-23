@@ -1,5 +1,8 @@
 import seaborn as sns
 
+
+## 3.4 데이터 요약 정보 및 통계값 살펴보기
+
 # 데이터의 맨위와 아래중 일부를 확인할때, head() tail() 메서드 사용
 
 df = sns.load_dataset('titanic')
