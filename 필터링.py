@@ -24,7 +24,26 @@ df.loc[filter_bool,]
 filter_bool_2 = (df['cylinders'] == 4) & (df['horsepower'] >= 100)
 #print(filter_bool_2)
 
-print(df.loc[filter_bool_2,['cylinders','horsepower','name']])
+# 열 이름을 리스트 형태로 입력하면 해당 열만 선택된다.
+df.loc[filter_bool_2,['cylinders','horsepower','name']]
+
+
+## 3.7.2 isin() 메서드
+
+# 불리언 인덱싱을 사용할때
+filter_bool_3 = (df['name'] == 'ford maverick') | (df['name'] == 'ford mustang i') | (df['name'] == 'chevrolet impala')
+df.loc[filter_bool_3, ]
+
+# isin() 메서드를 사용할때
+filter_isin = df['name'].isin(['ford maverick','ford mustang ii','chevrolet impala'])
+df.loc[filter_isin, ]
+
+# horsepower 순으로 정렬, ascending=False를 입력하면 내림차순
+
+print(df.loc[filter_isin, ].sort_values('horsepower'))
+
+
+
 
 
 
