@@ -27,12 +27,45 @@ df4 = pd.DataFrame({"B":["B2","B3","B6","B7"],
                     "F":["F2","F3","F6","F7"]},index=[2,3,6,7])
 
 result = pd.concat([df1, df4])
-print(result)
+#print(result)
 
 # 행인덱스를 초기화 
 result = pd.concat([df1, df4], ignore_index=True)
+# print(result)
+
+# 행이 아닌 열 기준으로 데이터 합치기
+result = pd.concat([df1, df4], axis=1)
+#print(result)
+
+# 교집합을 기준으로 사용하고 싶은 경우 join = inner 인자를 추가 입력한다.
+result = pd.concat([df1, df4], axis=1, join="inner")
+# print(result)
+
+# 데이터 프레임에 시리즈를 합칠수도 있다.
+s1 = pd.Series(["X0","X1","X2","X3"], name="X")
+result = pd.concat([df1,s1], axis=1)
+#print(result)
+
+# merge() 함수
+# 기준이 되는 열이나 인덱스, 즉 키를 기준으로 두 데이터프레임을 합친다. 
+# 데이터 프레임을 병합 하는 방법은 크게 inner join, left join, right join, outer join으로 구분된다.
+
+left = pd.DataFrame({
+    "key":["K0","K1","K2","K3"],
+    "A":["A0","A1","A2","A3"],
+    "B":["B0","B1","B2","B3"]
+})
+
+
+right = pd.DataFrame({
+    "key":["K0","K1","K3","K4"],
+    "C":["C0","C1","C2","C3"],
+    "D":["D0","D1","D2","D3"]
+})
+
+# 기준이 되는 열을 on 뒤에 입력
+
+result = pd.merge(left,right, on='key')
 
 print(result)
-
-
 
