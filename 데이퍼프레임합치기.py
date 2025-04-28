@@ -67,5 +67,58 @@ right = pd.DataFrame({
 
 result = pd.merge(left,right, on='key')
 
-print(result)
+# print(result)
 
+#left join
+result = pd.merge(left,right,on='key',how='left')
+# print(result)
+
+#right join
+result = pd.merge(left,right,on='key',how='right')
+# print(result)
+
+#outer join
+result = pd.merge(left,right,on='key',how='outer')
+# print(result)
+
+# 기준이 되는 열의 이름이 서로 다른 경우 left_on right_on 을 통해 키를 직접 선언
+
+left = pd.DataFrame({
+    "key_left":["K0","K1","K2","K3"],
+    "A":["A0","A1","A2","A3"],
+    "B":["B0","B1","B2","B3"]
+})
+
+right = pd.DataFrame({
+    "key_right":["K0","K1","K3","K4"],
+    "C":["C0","C1","C3","C4"],
+    "D":["D0","D1","D3","D4"]
+})
+
+result = pd.merge(left, right, left_on = 'key_left', right_on='key_right', how='inner')
+# print(result)
+
+
+#merge(left,right)가 아닌 left.merge(right) 형태로 함수 작성
+
+result = left.merge(right, left_on = 'key_left', right_on='key_right', how='inner')
+
+# print(result)
+
+# join 메서드
+# merge() 함수를 기반으로 만들어져 사용방법이 비슷하다. 다만 join() 메서드는 두 데이터 프레임의 행 인덱스를 기준으로 데이터를 결합한다.
+
+left = pd.DataFrame({
+    "A":["A0","A1","A2","A3"],
+    "B":["B0","B1","B2","B3"]},
+    index=["K0","K1","K2","K3"]
+)
+
+right = pd.DataFrame({
+    "C":["C0","C1","C3","C4"],
+    "D":["D0","D1","D3","D4"]},
+    index=["K0","K1","K3","K4"]
+)
+
+result = left.join(right)
+print(result)
