@@ -4,6 +4,10 @@ import pandas as pd
 
 df = sns.load_dataset('penguins')
 
+## -----------------------------------------
+## matplotlib 패키지 활용
+## -----------------------------------------
+
 # 산점도
 ## plt.scatter(df['flipper_length_mm'],df['body_mass_g'])
 ## plt.show()
@@ -34,4 +38,8 @@ df_unrate['DATE'] = pd.to_datetime(df_unrate['DATE'])
 plt.plot(df_unrate['DATE'], df_unrate['VALUE'])
 plt.show()
 
+
+## -----------------------------------------
+## pandas 패키지 활용
+## -----------------------------------------
 
