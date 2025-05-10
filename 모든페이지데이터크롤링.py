@@ -1,7 +1,7 @@
 import requests as rq
 from bs4 import BeautifulSoup
 import time
-
+import pandas as pd
 text_list = []
 author_list = []
 infor_list = []
@@ -22,16 +22,17 @@ for i in range(1, 100) :
 
     print(str(i) +" 페이지=========================")
 
-    if(i==10):
+    if(i==5):
         break
 
     if len(quote_text_list) > 0 :
         text_list.extend(quote_text_list)
         author_list.extend(quote_author_list)
-        author_list.extend(quote_link_list)
+        infor_list.extend(quote_link_list)
         
         time.sleep(1)
     else:
         break
 
-print(author_list)
+temp = pd.DataFrame({'text':text_list, 'author':author_list, 'infor':infor_list})
+print(temp.head(10))
